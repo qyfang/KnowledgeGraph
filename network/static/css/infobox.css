@@ -1,0 +1,121 @@
+body, html {
+  background-color: #171717;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#wrapper {
+  width: 600px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  opacity: 0.7;
+  background-color: #ede8e8;
+  border-radius:40px;
+}
+
+#left-side {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#left-side ul li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  line-height: 34px;
+  color: rgba(51, 51, 51, 0.5);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s ease-out;
+}
+#left-side ul li:hover {
+  color: #333333;
+  transition: all .2s ease-out;
+}
+#left-side ul li.active {
+  color: #333333;
+}
+
+#info-border {
+  height: 100%;
+  width: 1px;
+  left: 15%;
+  background-color: rgba(51, 51, 51, 0.2);
+}
+#info-border #line.one {
+  width: 5px;
+  height: 25%;
+  background-color: #767676;
+  margin-left: -2px;
+  margin-top: 25px;
+  transition: all .4s ease-in-out;
+}
+#info-border #line.two {
+  width: 5px;
+  height: 25%;
+  background-color: #767676;
+  margin-left: -2px;
+  margin-top: 78px;
+  transition: all .4s ease-in-out;
+}
+#info-border #line.three {
+  width: 5px;
+  height: 25%;
+  background-color: #767676;
+  margin-left: -2px;
+  margin-top: 130px;
+  transition: all .4s ease-in-out;
+}
+
+#right-side {
+  width: 100%;
+  height: 100%;
+}
+#right-side #first, #right-side #second, #right-side #third{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  transition: all .6s ease-in-out;
+  opacity: 0;
+  align-items: center;
+  word-break:break-all;
+  overflow-y: auto;
+}
+#right-side #first p, #right-side #second p, #right-side #third p{
+  color: #333;
+  font-weight: 500;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+#right-side #first.active, #right-side #second.active, #right-side #third.active{
+  margin-top: 0px;
+  opacity: 1;
+  transition: all .6s ease-in-out;
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0);
+}
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0);
+}

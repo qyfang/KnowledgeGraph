@@ -1,0 +1,82 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Network</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{% static 'css/vis.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/network.css' %}">
+  <link rel="stylesheet" href="{% static 'css/infobox.css' %}">
+  <script type="text/javascript">
+    var nodelist = {{ nodelist|safe }};
+    var edgelist = {{ edgelist|safe }};
+    var ranklist = {{ ranklist|safe }};
+  </script>
+</head>
+
+<body>
+  <div id="networkinfo">
+    <div class="label" id="nodenum"></div>
+    <div class="label" id="edgenum"></div>
+  </div>
+
+  <div id="buttonlist">
+    <input type="button" id="reset" value="Reset" class="btn">
+    <div id="algorithm">
+      <input type="text" placeholder="K" id="kdata">
+      <input type="button" id="kclique" value="K-Clique" class="btn">
+    </div>
+    <input type="button" id="layout-tree" value="Tree" class="btn">
+    <input type="button" id="layout-network" value="Network" class="btn">
+  </div>
+
+  <div id="network"></div>
+
+  <div class="infocard hidden">
+    <div id="wrapper">
+      <div id="left-side">
+        <ul>
+          <li class="choose1 active">
+            Basic
+          </li>
+          <li class="choose2">
+            Detailed
+          </li>
+          <li class="choose3">
+            Abstract
+          </li>
+        </ul>
+      </div>
+
+      <div id="info-border">
+        <div id="line" class="one"></div>
+      </div>
+
+      <div id="right-side">
+        <div id="first" class="active">
+        </div>
+
+        <div id="second" class="">
+        </div>
+
+        <div id="third" class="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="loadingBar">
+    <div class="outerBorder">
+      <div id="text">0%</div>
+      <div id="border">
+        <div id="bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/vis.min.js' %}"></script>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/network.js' %}"></script>
+  <script src="{% static 'js/infobox.js' %}"></script>
+</body>
+</html>

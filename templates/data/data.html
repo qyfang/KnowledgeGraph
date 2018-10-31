@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Data</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{% static 'css/data.css' %}">
+</head>
+
+<body>
+  <section>
+    <div id=side>
+      <input type="button" id="btn_delete" value="delete" class="btn">
+    </div>
+
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <!-- <th>id</th> -->
+            <th>url</th>
+            <th>title</th>
+            <th>authors</th>
+            <th>doi</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+          {% for reference in references %}
+          <reference class="reference reference_id-{{ reference.pk }}">
+            <tr>
+              <!-- <td>{{ reference.selfid }}</td> -->
+              <td>{{ reference.url }}</td>
+              <td>{{ reference.title }}</td>
+              <td>
+                {% for author in reference.authors %}
+                  {{author.authorname}} ,
+                {% endfor %}
+              </td>
+              <td>{{ reference.doi }}</td>
+            </tr>
+          </reference>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/data.js' %}"></script>
+</body>
+</html>

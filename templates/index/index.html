@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Knowledge Graph</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+
+<body>
+  <div class='space'>
+    <section>
+      <button class="btn btn-green btn-border" onclick="location='/spider'">Spider</button>
+      <button class="btn btn-purple btn-border" onclick="location='/data'">Data</button>
+      <button class="btn btn-blue btn-border" onclick="location='/network'">Network</button>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Spider</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{% static 'css/spider.css' %}">
+</head>
+
+<body>
+  <section>
+    <div class="wrap center">
+      <div id="mulinput">
+        <input type="text" id="keyword" class="input" placeholder="Keywords">
+        <input type="text" id="breadth" class="input" placeholder="Breadth">
+        <input type="text" id="depth" class="input" placeholder="Depth">
+        <button type="button" id="crawl">Crawl</button>
+      </div>
+    </div>
+
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>num - title</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    
+    <div class="tbl-content" id="tcontent">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody id="referencetable">
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/spider.js' %}"></script>
+</body>
+</html>
