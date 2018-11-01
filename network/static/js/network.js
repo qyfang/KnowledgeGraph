@@ -142,45 +142,6 @@ function drawNetwork() {
   });
 }
 
-// function showInfoCard(params) {
-//   var infocard = $(".infocard");
-//   var selfid = $(".selfid");
-//   var url = $(".url");
-//   var title = $(".title");
-//   var authors = $(".authors");
-//   var abstract = $(".abstract");
-
-//   var node = nodelist[params.nodes[0]];
-
-//   selfid.html("");
-//   url.html("");
-//   title.html("");
-//   authors.html("");
-//   abstract.html("");
-
-//   selfid.html(node["selfid"]);
-
-//   title.html(node["title"]);
-
-//   var div = document.getElementsByClassName("url")[0];
-//   var a = document.createElement("a");
-//   a.href = node["url"];
-//   a.innerText = node["url"];
-//   a.target = "_BLANK";
-//   div.appendChild(a);
-
-//   var str="";
-//   for(var i in node["authors"]){
-//     if (i == node["authors"].length - 1) str += node["authors"][i]["authorname"]
-//     else str += node["authors"][i]["authorname"] + ", "
-//   }
-//   authors.html(str);
-
-//   abstract.html(node["abstract"])
-
-//   infocard.removeClass("hidden");
-// }
-
 function showInfoCard(params) {
   var infocard = $(".infocard");
   var node = nodelist[params.nodes[0]];
@@ -319,19 +280,3 @@ $("#layout-network").click(function(){
 drawNetwork();
 document.getElementById('nodenum').innerHTML = 'node: '+ nodes.length;
 document.getElementById('edgenum').innerHTML = 'edge: '+ edges.length;
-network.on("stabilizationProgress", function(params) {
-  document.getElementById('loadingBar').style.display = '';
-  document.getElementById('loadingBar').style.opacity = 1;
-  var maxWidth = 496;
-  var minWidth = 20;
-  var widthFactor = params.iterations/params.total;
-  var width = Math.max(minWidth,maxWidth * widthFactor);
-  document.getElementById('bar').style.width = width + 'px';
-  document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
-});
-network.once("stabilizationIterationsDone", function() {
-  document.getElementById('text').innerHTML = '100%';
-  document.getElementById('bar').style.width = '496px';
-  document.getElementById('loadingBar').style.opacity = 0;
-  setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
-});
