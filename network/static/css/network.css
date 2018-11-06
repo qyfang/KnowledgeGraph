@@ -105,12 +105,11 @@ body, html {
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   opacity:1;
-
 }
 
 #text {
   position:absolute;
-  top:0px;
+  top:6px;
   left:530px;
   width:30px;
   height:50px;
@@ -140,7 +139,7 @@ div.outerBorder {
 
 #border {
   position:absolute;
-  top:3px;
+  top:9px;
   left:10px;
   width:500px;
   height:23px;

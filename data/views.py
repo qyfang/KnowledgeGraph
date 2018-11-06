@@ -5,12 +5,12 @@ from django.shortcuts import render
 
 from django.http import JsonResponse
 
-from data import deleteReferenceData, loadReferenceData
+from data import deleteReferenceData, getReferenceData
 
 # Create your views here.
 
 def showTable(request):
-    references = loadReferenceData()
+    references = getReferenceData()
 
     return render(request, 'data/data.html',
      context={'references': references})

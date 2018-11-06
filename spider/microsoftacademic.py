@@ -185,12 +185,14 @@ class MicrosoftAcademicSpider(MicrosoftAcademic):
                     au['authorname'] = author['lt']
                     au['authorid'] = str(author['id'])
                 except:
-                    pass
+                    au['authorname'] = ''
+                    au['authorid'] = ''
                 try:
                     au['organizationname'] = author['lt2']
                     au['organizationid'] = str(author['id2'])
                 except:
-                    pass
+                    au['organizationname'] = ''
+                    au['organizationid'] = ''
                 self.reference['authors'].append(au)
         except :
             self.reference['authors'] = []

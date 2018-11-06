@@ -63,14 +63,15 @@ class ScholarSpider(object):
                 if page:
                     parseflag = spider.parsePage(page)
                     if parseflag:
-                        num += 1
                         # spider.showReferenceInfo(num)
-                        senddata = str(str(num) + '-' + spider.reference['title'])
-                        request.websocket.send(senddata)
 
                         created = spider.storeReferenceData()
 
                         if created:
+                            num += 1
+                            senddata = str(str(num) + '-' + spider.reference['title'])
+                            request.websocket.send(senddata)
+
                             referids = spider.getNextRoundIds()
                             nextroundids += referids
 

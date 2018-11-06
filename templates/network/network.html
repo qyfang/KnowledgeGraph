@@ -8,9 +8,8 @@
   <link rel="stylesheet" href="{% static 'css/network.css' %}">
   <link rel="stylesheet" href="{% static 'css/infobox.css' %}">
   <script type="text/javascript">
-    var nodelist = {{ nodelist|safe }};
-    var edgelist = {{ edgelist|safe }};
-    var ranklist = {{ ranklist|safe }};
+    // var nodelist = {{ nodelist|safe }};
+    // var edgelist = {{ edgelist|safe }};
   </script>
 </head>
 
@@ -26,8 +25,8 @@
       <input type="text" placeholder="K" id="kdata">
       <input type="button" id="kclique" value="K-Clique" class="btn">
     </div>
-    <input type="button" id="layout-tree" value="Tree" class="btn">
-    <input type="button" id="layout-network" value="Network" class="btn">
+    <input type="button" id="reference-network" value="Reference" class="btn">
+    <input type="button" id="author-network" value="Author" class="btn">
   </div>
 
   <div id="network"></div>
@@ -37,13 +36,10 @@
       <div id="left-side">
         <ul>
           <li class="choose1 active">
-            Basic
           </li>
           <li class="choose2">
-            Detailed
           </li>
           <li class="choose3">
-            Abstract
           </li>
         </ul>
       </div>
@@ -65,7 +61,7 @@
     </div>
   </div>
 
-  <div id="loadingBar">
+  <div id="loadingBar" class="hidden">
     <div class="outerBorder">
       <div id="text">0%</div>
       <div id="border">
@@ -76,7 +72,7 @@
 
   <script src="{% static 'js/vis.min.js' %}"></script>
   <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/network.js' %}"></script>
+  <script src="{% static 'js/visualnetwork.js' %}"></script>
   <script src="{% static 'js/infobox.js' %}"></script>
 </body>
 </html>
