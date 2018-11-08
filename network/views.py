@@ -24,14 +24,15 @@ def getreferencenetwork(request):
     referencenetwork = ReferenceNetwork()
     referencenetwork.generateNetwork()
 
-    referencenetwork.executePageRank()
+    ranklist = referencenetwork.rankNode()
 
     graph = referencenetwork.graph
     nodes = dict(graph.nodes)
     edges = {i: {'from': e[0], 'to': e[1]} for i,e in enumerate(graph.edges)}
     return JsonResponse({
-        'nodelist':nodes,
-        'edgelist':edges
+        'nodelist': nodes,
+        'edgelist': edges,
+        'ranklist': ranklist
         },
         safe=False)
 
@@ -41,7 +42,7 @@ def getauthornetwork(request):
     authornetwork = AuthorNetwork()
     authornetwork.generateNetwork()
 
-    authornetwork.executePageRank()
+    ranklist = authornetwork.rankNode()
 
     graph = authornetwork.graph
     nodes = dict(graph.nodes)
@@ -49,6 +50,7 @@ def getauthornetwork(request):
     return JsonResponse({
         'nodelist':nodes,
         'edgelist':edges,
+        'ranklist': ranklist
         },
         safe=False)
 

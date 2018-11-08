@@ -48,14 +48,39 @@ class Network(object):
         pr = pagerank_numpy(self.graph)
         maxpr = max(pr.values())
         minpr = min(pr.values())
+
         nodes = self.graph.node
 
+        ranklist = []
         for n in nodes:
             nodes[n]['weight'] = (pr[n] - minpr) / (maxpr - minpr)
+            ranklist.append((n,nodes[n]['weight']))
+        ranklist = sorted(ranklist, lambda x, y: cmp(x[1], y[1]), reverse=True)
 
-        rank = sorted(pr.items(), lambda x, y: cmp(x[1], y[1]), reverse=True)
+        return ranklist
 
-        return rank
+    def calculateNodeImpactFactor(self):
+        items = self.graph.in_degree()
+
+        maxif = max([item[1] for item in items])
+        minif = min([item[1] for item in items])
+
+        nodes = self.graph.node
+
+        ranklist = []
+        for item in items:
+            nodeid = item[0]
+            indegree = item[1]
+            nodes[nodeid]['weight'] = float(indegree - minif) / float(maxif - minif)
+            ranklist.append((nodeid, nodes[nodeid]['weight']))
+        ranklist = sorted(ranklist, lambda x, y: cmp(x[1], y[1]), reverse=True)
+
+        return ranklist
+
+    def rankNode(self):
+        # ranklist = self.executePageRank()
+        ranklist = self.calculateNodeImpactFactor()
+        return ranklist[:20]
 
 
 class ReferenceNetwork(Network):

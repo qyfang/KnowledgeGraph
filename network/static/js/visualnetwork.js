@@ -412,6 +412,80 @@ function dyeNetwork(group) {
 }
 
 
+function focusNode(id) {
+  var options={
+    scale: 1,
+    animation: {
+      duration: 800,
+      easingFunction: 'easeInQuad'
+    }
+  }
+  network.focus(id, options);
+
+  var ids = new Array()
+  ids[0] = id
+  network.selectNodes(ids);
+  setTimeout(function(){ network.unselectAll(); }, 1500);
+}
+
+function showRanklist(ranklist) {
+  var header = document.getElementById("rankheader");
+  var content = document.getElementById("rankcontent");
+
+  while(header.hasChildNodes()) {
+    header.removeChild(header.firstChild);
+  }
+
+  while(content.hasChildNodes()) {
+    content.removeChild(content.firstChild);
+  }
+
+  var tr = document.createElement("tr");
+  var th0 = document.createElement("th");
+  var th1 = document.createElement("th");
+  var th2 = document.createElement("th");
+  th0.innerText = "Rank";
+  th0.setAttribute("width", "10%");
+  th1.innerText = "Node";
+  th1.setAttribute("width", "70%");
+  th2.innerText = "Weight";
+  th2.setAttribute("width", "20%");
+  tr.appendChild(th0);
+  tr.appendChild(th1);
+  tr.appendChild(th2);
+  header.appendChild(tr);
+
+  var num = 0;
+  for (var i in ranklist) {
+    var id = ranklist[i][0];
+    var value = String(ranklist[i][1]).substring(0, 5);
+    var name = nodes['_data'][id]['title'];
+    num += 1;
+
+    var tr = document.createElement("tr");
+    var td0 = document.createElement("td");
+    var td1 = document.createElement("td");
+    var td2 = document.createElement("td");
+
+    td0.innerText = num;
+    td1.setAttribute("width", "10%");
+    td1.innerText = name;
+    td1.setAttribute("width", "70%");
+    td2.innerText = value;
+    td2.setAttribute("width", "20%");
+
+    tr.appendChild(td0);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+
+    var click = 'focusNode('+id+')';
+    tr.setAttribute('onClick',click);
+
+    content.appendChild(tr);
+  }
+}
+
+
 $("#reference-network").click(function(){
   $.ajax({
     url: "referencenetwork",
@@ -419,6 +493,7 @@ $("#reference-network").click(function(){
     success:function(message){
       var nodelist = message["nodelist"];
       var edgelist = message["edgelist"];
+      var ranklist = message["ranklist"];
 
       var data = getReferenceNetworkData(nodelist, edgelist);
 
@@ -426,6 +501,8 @@ $("#reference-network").click(function(){
       document.getElementById('edgenum').innerHTML = 'edge: '+ edges.length;
 
       drawReferenceNetwork(data);
+
+      showRanklist(ranklist);
     }
   })
 })
@@ -438,12 +515,15 @@ $("#author-network").click(function(){
     success:function(message){
       var nodelist = message["nodelist"];
       var edgelist = message["edgelist"];
+      var ranklist = message["ranklist"];
 
       var data = getAuthorNetworkData(nodelist, edgelist);
       document.getElementById('nodenum').innerHTML = 'node: '+ nodes.length;
       document.getElementById('edgenum').innerHTML = 'edge: '+ edges.length;
 
       drawAuthorNetwork(data);
+
+      showRanklist(ranklist);
     }
   })
 })
