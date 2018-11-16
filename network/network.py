@@ -78,8 +78,8 @@ class Network(object):
         return ranklist
 
     def rankNode(self):
-        # ranklist = self.executePageRank()
-        ranklist = self.calculateNodeImpactFactor()
+        ranklist = self.executePageRank()
+        # ranklist = self.calculateNodeImpactFactor()
         return ranklist[:20]
 
 
